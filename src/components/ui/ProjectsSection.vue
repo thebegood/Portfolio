@@ -6,6 +6,7 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { asset } from '@/asset.js'
 import { beachProjects } from '@/data/projects.js'
 import ProjectCard from './ProjectCard.vue'
 import ShortsReel from './ShortsReel.vue'
@@ -52,7 +53,7 @@ onUnmounted(() => {
           class="overflow-hidden rounded-3xl bg-foam/92 text-ink shadow-[0_24px_50px_-32px_rgba(36,31,20,0.55)] md:col-span-7"
         >
           <img
-            src="/projects/1_map2.png"
+            :src="asset('projects/1_map2.png')"
             alt="Map de ChudBalls : une île dans le bassin, entre deux chaises de maître-nageur."
             class="aspect-video w-full bg-sky object-contain"
           />
@@ -71,7 +72,7 @@ onUnmounted(() => {
           class="overflow-hidden rounded-3xl bg-foam/92 text-ink shadow-[0_24px_50px_-32px_rgba(36,31,20,0.55)] md:col-span-5"
         >
           <img
-            src="/projects/thumbnail.jpg"
+            :src="asset('projects/thumbnail.jpg')"
             alt="Menu de ChudBalls : héberger, trouver une partie, changer de classe, lancer."
             class="aspect-video w-full bg-sky object-contain"
           />

@@ -9,7 +9,7 @@
  * span:    placement dans la grille 12 colonnes.
  */
 
-import { IndirectStorageBufferAttribute } from "three/webgpu"
+import { asset } from '@/asset.js'
 
 export const beachProjects = [
   {
@@ -18,7 +18,7 @@ export const beachProjects = [
     title: 'Multijoueur',
     kicker: 'Expérimentation',
     year: '2026',
-    role: 'Physique · mouvement',
+    role: 'Réseau · Synchronisation des joueurs/balles',
     summary:
       'Le plus gros défi de ce projet a été de mettre en place le système de multijoueur, qui complique grandement le développement du jeu. Chaque petite action du jeu devait être prise en compte pour le multijoueur.',
     tags: ['Steamworks API', 'Synchronisation'],
@@ -35,7 +35,7 @@ export const beachProjects = [
     role: 'Game Feel',
     summary:
       'Implémentation de mécaniques de jeu satisfaisantes. Possibilité de «Smasher» une balle si le joueur a le bon timing, ce qui provoque un feedback satisfaisant et offre un avantage considérable si le joueur vise la balle «Smashée» sur un autre joueur. ',
-    tags: ['Réseau', 'Prédiction'],
+    tags: ['Game Feel', 'Feedback'],
     accent: 'bg-feez-purple',
     span: 'md:col-span-6',
     diorama: null,
@@ -49,13 +49,13 @@ export const bunkerProjects = [
     title: 'Projet zombies',
     kicker: 'Jeu présenté',
     year: '2025',
-    role: 'Jeu vidéo 2 · quatre semaines',
+    role: 'Jeu vidéo 2 · 4 semaines',
     summary:
-      'Projet de quatre semaines pour le cours Jeu vidéo 2 du cégep. Mode à manches dans un bunker : quatre armes, des niveaux courts, et une horde qui se resserre tant que la manche n’est pas bouclée.',
+      'Projet de quatre semaines pour le cours Jeu vidéo 2 du cégep. Mode à manches dans deux maps différentes : Maison et Laverie. Quatre armes différentes, des hordes et des barricades renforçables',
     tags: ['Cégep', 'Manches', 'Armes'],
     accent: 'bg-perk',
     span: 'md:col-span-12',
-    image: '/projects/Zombie_weapons.png',
+    image: asset('projects/Zombie_weapons.png'),
     weapons: [
       {
         name: 'Fusil d’assaut',
@@ -95,12 +95,12 @@ export const bunkerProjects = [
   {
     id: 'hordes',
     index: '05',
-    title: 'Navigation des hordes',
+    title: 'Navigation des ennemis',
     kicker: 'Expérimentation',
     year: '2025',
     role: 'IA · spawn',
     summary:
-      'Slots d’attaque, navigation et cadence de spawn qui se resserre à chaque manche. Remplace ce texte par ton prototype.',
+      'Implémentation d\'une IA pour les ennemis, qui se déplace de manière autonome et attaque le joueur.',
     tags: ['IA', 'Spawn'],
     accent: 'bg-amber',
     span: 'md:col-span-6',
@@ -112,9 +112,9 @@ export const bunkerProjects = [
     title: 'Barricades',
     kicker: 'Expérimentation',
     year: '2025',
-    role: 'Gameplay · pression',
+    role: 'Gameplay · Défense',
     summary:
-      'Points d’entrée, réparation, et une pression qui tourne autour du joueur. Remplace ce texte par ton prototype.',
+      'Points d\'apparition des ennemis. En maintenant la touche E, la barricade se renforce au fil du temps.',
     tags: ['Boucle de jeu', 'Espace'],
     accent: 'bg-blood',
     span: 'md:col-span-6',

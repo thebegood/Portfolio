@@ -9,6 +9,7 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 import gsap from 'gsap'
 import { beachShorts } from '@/data/shorts.js'
+import UnityMark from './UnityMark.vue'
 
 const videos = beachShorts
 const viewport = ref(null)
@@ -154,9 +155,12 @@ onUnmounted(() => {
         <p class="font-hud text-sm font-semibold uppercase tracking-[0.32em] text-sea">
           Shorts
         </p>
-        <h3 class="mt-2 font-display text-4xl font-extrabold tracking-tight text-ink md:text-5xl">
-          ChudBalls
-        </h3>
+        <div class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2">
+          <h3 class="font-display text-4xl font-extrabold tracking-tight text-ink md:text-5xl">
+            ChudBalls
+          </h3>
+          <UnityMark />
+        </div>
       </div>
       <p class="hidden max-w-xs text-right text-sm leading-relaxed text-ink/75 md:block">
         Vidéos courtes de ChudBalls.

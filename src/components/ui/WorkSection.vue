@@ -1,3 +1,7 @@
+<script setup>
+import { asset } from '@/asset.js'
+</script>
+
 <template>
   <section id="poste" class="bg-[#e7eef6] px-5 py-12 text-[#10224f] md:px-8 md:py-14">
     <div class="mx-auto max-w-6xl">
@@ -8,7 +12,7 @@
       <div class="mt-5 grid gap-3 md:grid-cols-2">
         <article class="flex flex-col gap-4 rounded-2xl bg-white p-5 sm:flex-row sm:items-center">
           <img
-            src="/projects/dsti_stfoy.png"
+            :src="asset('projects/dsti_stfoy.png')"
             alt="Cégep de Sainte-Foy, Direction des systèmes et des technologies de l’information"
             class="h-12 w-auto shrink-0 object-contain object-left"
           />
@@ -19,7 +23,7 @@
 
         <article class="flex flex-col gap-4 rounded-2xl bg-white p-5 sm:flex-row sm:items-center">
           <img
-            src="/projects/logo_ccsi_final.png"
+            :src="asset('projects/logo_ccsi_final.png')"
             alt="CCSI, Centres collégiaux de soutien à l’intégration"
             class="h-12 w-auto shrink-0 object-contain object-left"
           />

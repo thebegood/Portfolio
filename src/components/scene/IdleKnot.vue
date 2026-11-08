@@ -48,6 +48,7 @@ import {
   Vector3,
 } from 'three'
 import { useGLTF } from '@tresjs/cientos'
+import { asset } from '@/asset.js'
 
 // Direction caméra → personnage, dans l'espace du .glb (le cadre ne tourne pas).
 const GLINT_VIEW = new Vector3(0.78, 0.55, 0.61).normalize()
@@ -62,7 +63,7 @@ celRamp.magFilter = NearestFilter
 celRamp.generateMipmaps = false
 celRamp.needsUpdate = true
 
-const MODEL_URL = '/models/sceneassets.glb'
+const MODEL_URL = asset('models/sceneassets.glb')
 const TARGET_HEIGHT = 2.7
 const FLOOR_Y = -1.45
 // Écarte les pieds du plan de sable. Au contact exact, le z-buffer clignote.

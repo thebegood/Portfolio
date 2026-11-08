@@ -10,6 +10,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { bunkerProjects } from '@/data/projects.js'
 import ProjectCard from './ProjectCard.vue'
+import UnityMark from './UnityMark.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -59,9 +60,12 @@ onUnmounted(() => {
           <p class="font-hud text-sm font-semibold uppercase tracking-[0.32em] text-perk">
             Chapitre 02
           </p>
-          <h2 class="mt-2 font-display text-4xl font-extrabold tracking-tight md:text-6xl">
-            Dans le bunker
-          </h2>
+          <div class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2">
+            <h2 class="font-display text-4xl font-extrabold tracking-tight md:text-6xl">
+              ZombieFPS
+            </h2>
+            <UnityMark tone="dark" />
+          </div>
         </div>
         <p class="max-w-sm font-hud text-base leading-snug tracking-wide text-bone/70 md:text-right">
           Manches, hordes, barricades, différentes armes et animations faites maison.
