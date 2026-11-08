@@ -59,19 +59,19 @@ export const bunkerProjects = [
     weapons: [
       {
         name: 'Fusil d’assaut',
-        note: 'Le débit. Il tient une file de zombies tant que le chargeur suit.',
+        note: 'Dur à manier à cause de son recul, mais très efficace si bien maitrisé.',
       },
       {
         name: 'Fusil à pompe',
-        note: 'Le contact. Un coup large quand la horde est déjà dans la pièce.',
+        note: 'Dévastateur et très efficace à courte portée.',
       },
       {
         name: 'Fusil de précision',
-        note: 'La ligne de vue. Un tir, une cible, avant qu’elle ne traverse.',
+        note: 'Long, précis et mortel. Vient avec une lunette de visée.',
       },
       {
         name: 'Pistolet',
-        note: 'Le secours. Court, rapide, pour finir un chargeur vide.',
+        note: 'Petit, rapide et efficace.',
       },
     ],
     // Id YouTube du format long, la partie après watch?v= ou youtu.be/.
