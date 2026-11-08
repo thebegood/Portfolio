@@ -12,6 +12,7 @@ import SiteHeader from './SiteHeader.vue'
 import HeroSection from './HeroSection.vue'
 import ProjectsSection from './ProjectsSection.vue'
 import ZombieSection from './ZombieSection.vue'
+import WorkSection from './WorkSection.vue'
 import SiteFooter from './SiteFooter.vue'
 </script>
 
@@ -30,6 +31,7 @@ import SiteFooter from './SiteFooter.vue'
       class="pointer-events-none h-[32vh] bg-gradient-to-b from-transparent via-void/40 to-void"
     />
     <ZombieSection />
+    <WorkSection />
     <SiteFooter />
   </main>
 </template>

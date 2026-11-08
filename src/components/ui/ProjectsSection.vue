@@ -44,21 +44,47 @@ onUnmounted(() => {
 <template>
   <section id="projets" ref="sectionRef" class="px-5 py-24 md:px-8 md:py-32">
     <div class="mx-auto max-w-6xl">
-      <div class="mb-12 flex flex-col gap-4 md:mb-16 md:flex-row md:items-end md:justify-between">
-        <div>
-          <p class="font-hud text-sm font-semibold uppercase tracking-[0.32em] text-sea">
-            Chapitre 01
-          </p>
-          <h2 class="mt-2 font-display text-4xl font-extrabold tracking-tight text-ink md:text-6xl">
-            Sur la plage
-          </h2>
-        </div>
-        <p class="max-w-sm text-sm leading-relaxed text-ink/75 md:text-right">
-          Le jeu en shorts, puis les bancs d’essai physique et réseau.
-        </p>
-      </div>
+      <ShortsReel class="mt-4 mb-8 md:mb-10" />
 
-      <ShortsReel class="mt-4 mb-20 md:mb-28" />
+      <div class="mb-20 grid grid-cols-1 gap-4 md:mb-28 md:grid-cols-12 md:gap-5">
+        <figure
+          data-project-card
+          class="overflow-hidden rounded-3xl bg-foam/92 text-ink shadow-[0_24px_50px_-32px_rgba(36,31,20,0.55)] md:col-span-7"
+        >
+          <img
+            src="/projects/1_map2.png"
+            alt="Map de ChudBalls : une île dans le bassin, entre deux chaises de maître-nageur."
+            class="aspect-video w-full bg-sky object-contain"
+          />
+          <figcaption class="px-6 py-5">
+            <p class="font-hud text-sm font-semibold uppercase tracking-[0.28em] text-sea">
+              La map
+            </p>
+            <p class="mt-2 text-base leading-relaxed text-ink/85">
+              L’île au centre du bassin, où chaque plateforme peut tomber à tout moment si un joueur tire sa balle dessus. Des cannons tirent des grosses balles sur l'île.
+            </p>
+          </figcaption>
+        </figure>
+
+        <figure
+          data-project-card
+          class="overflow-hidden rounded-3xl bg-foam/92 text-ink shadow-[0_24px_50px_-32px_rgba(36,31,20,0.55)] md:col-span-5"
+        >
+          <img
+            src="/projects/thumbnail.jpg"
+            alt="Menu de ChudBalls : héberger, trouver une partie, changer de classe, lancer."
+            class="aspect-video w-full bg-sky object-contain"
+          />
+          <figcaption class="px-6 py-5">
+            <p class="font-hud text-sm font-semibold uppercase tracking-[0.28em] text-sea">
+              Le menu
+            </p>
+            <p class="mt-2 text-base leading-relaxed text-ink/85">
+              Le lobby : héberger ou rejoindre grâce à l'API de Steam, choisir une classe, puis lancer la partie.
+            </p>
+          </figcaption>
+        </figure>
+      </div>
 
       <div class="grid grid-cols-1 gap-4 md:grid-cols-12 md:gap-5">
         <ProjectCard

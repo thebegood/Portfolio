@@ -32,6 +32,9 @@ onMounted(() => {
           start: 'top 88%',
           toggleActions: 'play none none none',
         },
+        // Un transform laissé sur la carte empêche Chrome d'envoyer
+        // le clic souris dans l'iframe YouTube. Le tactile, lui, passe.
+        onComplete: () => gsap.set(card, { clearProps: 'transform' }),
       })
     })
   }, sectionRef.value)

@@ -159,7 +159,7 @@ onUnmounted(() => {
         </h3>
       </div>
       <p class="hidden max-w-xs text-right text-sm leading-relaxed text-ink/75 md:block">
-        Le premier jeu, en vertical. Glisse, ou passe au suivant.
+        Vidéos courtes de ChudBalls.
       </p>
     </div>
 

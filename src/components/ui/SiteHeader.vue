@@ -4,8 +4,8 @@ import { scrollToSelector } from '@/composables/lenis.js'
 
 const links = [
   { href: '#haut', label: 'Accueil' },
-  { href: '#projets', label: 'Plage' },
-  { href: '#bunker', label: 'Bunker' },
+  { href: '#projets', label: 'Chudballs' },
+  { href: '#bunker', label: 'ZombieFps' },
 ]
 
 function onNavClick(event) {
@@ -36,7 +36,7 @@ function onNavClick(event) {
       </a>
 
       <p class="hidden font-hud text-sm font-semibold uppercase tracking-[0.28em] sm:block">
-        {{ sceneMood.progress > 0.45 ? '02 — Bunker' : '01 — Plage' }}
+        {{ sceneMood.progress > 0.45 ? '02 — ZombieFps' : '01 — ChudBalls' }}
       </p>
 
       <nav class="flex items-center gap-4 text-sm md:gap-7">

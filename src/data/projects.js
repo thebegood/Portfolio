@@ -2,25 +2,26 @@
  * Contenu des cartes. Tout est un placeholder : remplace titres, résumés,
  * tags, et ajoute tes captures dans /public/projects.
  *
- * diorama: 'beach' | 'bunker' | null
- *   Bloc de couleurs en attendant une vraie image. Le composant ProjectCard
- *   indique exactement où poser le <img>.
+ * diorama n'est plus utilisé. Une carte avec `image` affiche ce fichier
+ * (chemin public, ex. /projects/photo.png). `weapons` ajoute une légende.
  *
  * accent: classe Tailwind du point de couleur (tokens du @theme).
  * span:    placement dans la grille 12 colonnes.
  */
 
+import { IndirectStorageBufferAttribute } from "three/webgpu"
+
 export const beachProjects = [
   {
     id: 'physique',
     index: '01',
-    title: 'Contrôleur',
+    title: 'Multijoueur',
     kicker: 'Expérimentation',
     year: '2026',
     role: 'Physique · mouvement',
     summary:
-      'Implémentation de mécaniques de jeu satisfaisantes. Remplace ce texte par ton prototype.',
-    tags: ['Physique', 'Mouvement'],
+      'Le plus gros défi de ce projet a été de mettre en place le système de multijoueur, qui complique grandement le développement du jeu. Chaque petite action du jeu devait être prise en compte pour le multijoueur.',
+    tags: ['Steamworks API', 'Synchronisation'],
     accent: 'bg-sea-mid',
     span: 'md:col-span-6',
     diorama: null,
@@ -28,12 +29,12 @@ export const beachProjects = [
   {
     id: 'reseau',
     index: '02',
-    title: 'État répliqué',
+    title: 'Mécanique de Smash',
     kicker: 'Expérimentation',
     year: '2026',
-    role: 'Réseau · prédiction',
+    role: 'Game Feel',
     summary:
-      'Snapshot d’état, prédiction client et correction. Remplace ce texte par ton prototype.',
+      'Implémentation de mécaniques de jeu satisfaisantes. Possibilité de «Smasher» une balle si le joueur a le bon timing, ce qui provoque un feedback satisfaisant et offre un avantage considérable si le joueur vise la balle «Smashée» sur un autre joueur. ',
     tags: ['Réseau', 'Prédiction'],
     accent: 'bg-feez-purple',
     span: 'md:col-span-6',
@@ -47,21 +48,56 @@ export const bunkerProjects = [
     index: '03',
     title: 'Projet zombies',
     kicker: 'Jeu présenté',
-    year: '2026',
-    role: 'Gameplay · manches · hordes',
+    year: '2025',
+    role: 'Jeu vidéo 2 · quatre semaines',
     summary:
-      'Mode à manches dans un bunker : points, barricades, hordes qui accélèrent, lumières qui lâchent. Remplace le nom, les systèmes et la capture. L’ambiance vise un mode zombies souterrain, pas une licence.',
-    tags: ['Manches', 'Hordes', 'Bunker'],
+      'Projet de quatre semaines pour le cours Jeu vidéo 2 du cégep. Mode à manches dans un bunker : quatre armes, des niveaux courts, et une horde qui se resserre tant que la manche n’est pas bouclée.',
+    tags: ['Cégep', 'Manches', 'Armes'],
     accent: 'bg-perk',
     span: 'md:col-span-12',
-    diorama: 'bunker',
+    image: '/projects/Zombie_weapons.png',
+    weapons: [
+      {
+        name: 'Fusil d’assaut',
+        note: 'Le débit. Il tient une file de zombies tant que le chargeur suit.',
+      },
+      {
+        name: 'Fusil à pompe',
+        note: 'Le contact. Un coup large quand la horde est déjà dans la pièce.',
+      },
+      {
+        name: 'Fusil de précision',
+        note: 'La ligne de vue. Un tir, une cible, avant qu’elle ne traverse.',
+      },
+      {
+        name: 'Pistolet',
+        note: 'Le secours. Court, rapide, pour finir un chargeur vide.',
+      },
+    ],
+    // Id YouTube du format long, la partie après watch?v= ou youtu.be/.
+    // Chaîne vide : le cadre d'attente reste affiché.
+    videoId: 'XzodV9v1-kI',
+  },
+  {
+    id: 'camera',
+    index: '04',
+    title: 'Caméra',
+    kicker: 'Expérimentation',
+    year: '2025',
+    role: 'Regard · Poids · Recul',
+    summary:
+      'Ayant étudié plusieurs jeu de tir à la première personne, nous cherchions à implémenter une caméra digne du réalisme des plus grands jeux de l\'industrie. La caméra réagit à chaque déplacement, ainsi qu\'au tir de l\'arme sélectionnée, chaque arme ayant un effet différent sur la caméra.',
+    tags: ['Tilt', 'Saut', 'Recul'],
+    accent: 'bg-amber',
+    span: 'md:col-span-12',
+    diorama: null,
   },
   {
     id: 'hordes',
-    index: '04',
+    index: '05',
     title: 'Navigation des hordes',
     kicker: 'Expérimentation',
-    year: '2026',
+    year: '2025',
     role: 'IA · spawn',
     summary:
       'Slots d’attaque, navigation et cadence de spawn qui se resserre à chaque manche. Remplace ce texte par ton prototype.',
@@ -72,10 +108,10 @@ export const bunkerProjects = [
   },
   {
     id: 'barricades',
-    index: '05',
+    index: '06',
     title: 'Barricades',
     kicker: 'Expérimentation',
-    year: '2026',
+    year: '2025',
     role: 'Gameplay · pression',
     summary:
       'Points d’entrée, réparation, et une pression qui tourne autour du joueur. Remplace ce texte par ton prototype.',

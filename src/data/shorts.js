@@ -6,7 +6,7 @@ export const beachShorts = [
   {
     id: 'ZgSCKb4jsc4',
     kicker: 'ChudBalls',
-    title: 'Le rendu',
+    title: 'Gameplay Multijoueur',
     note: 'Mise à jour graphique',
   },
   {

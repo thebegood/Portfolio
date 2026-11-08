@@ -1,5 +1,5 @@
 <script setup>
-defineProps({
+const props = defineProps({
   project: {
     type: Object,
     required: true,
@@ -9,6 +9,15 @@ defineProps({
     default: 'beach',
   },
 })
+
+function embedSrc(id) {
+  // Même adresse que le oEmbed YouTube. nocookie + ?origin laissait un cadre
+  // noir : le lecteur ne se construisait pas, donc le clic ne lançait rien.
+  const params = 'rel=0&modestbranding=1&playsinline=1'
+  return `https://www.youtube.com/embed/${id}?${params}`
+}
+
+const hasVideoSlot = props.project.videoId !== undefined
 </script>
 
 <template>
@@ -25,29 +34,34 @@ defineProps({
   >
     <!--
       VISUEL
-      Remplace le diorama (ou le filet d'accent) par ta capture :
-      <img
-        src="/projects/capture.jpg"
-        alt=""
-        class="mb-6 h-52 w-full rounded-2xl object-cover"
-      />
-      Fichiers dans public/projects/. Le diorama n'est qu'un code couleur d'attente.
+      project.image pointe vers un fichier de public/ (ex. /projects/photo.png).
+      Sans image, le filet d'accent tient lieu de visuel.
     -->
-    <div
-      v-if="project.diorama === 'bunker'"
-      class="relative mb-6 h-52 overflow-hidden rounded-2xl bg-void"
-      aria-hidden="true"
+    <figure v-if="project.image" class="mb-6 overflow-hidden rounded-2xl bg-void">
+      <img
+        :src="project.image"
+        alt="Menu du jeu : niveaux House et Laundry, et les quatre armes au choix."
+        class="h-auto max-h-[28rem] w-full object-contain"
+      />
+    </figure>
+
+    <ul
+      v-if="project.weapons?.length"
+      class="mb-6 grid gap-3 sm:grid-cols-2"
     >
-      <div class="absolute inset-0 bg-gradient-to-b from-void via-fog to-concrete" />
-      <div class="absolute inset-x-8 top-1/2 h-px bg-amber/80" />
-      <div class="absolute top-1/2 left-1/3 h-28 w-28 -translate-y-1/2 rounded-full bg-perk/15 blur-3xl" />
-      <p class="absolute top-5 left-5 font-hud text-sm font-semibold uppercase tracking-[0.42em] text-perk">
-        Manche 01
-      </p>
-      <p class="absolute right-3 bottom-3 font-hud text-[10px] font-semibold uppercase tracking-[0.28em] text-amber/90">
-        Visuel à remplacer
-      </p>
-    </div>
+      <li
+        v-for="weapon in project.weapons"
+        :key="weapon.name"
+        class="rounded-2xl border border-amber/30 bg-void/70 px-4 py-3"
+      >
+        <p class="font-hud text-sm font-semibold uppercase tracking-[0.18em] text-amber">
+          {{ weapon.name }}
+        </p>
+        <p class="mt-1 text-sm leading-relaxed text-bone/80">
+          {{ weapon.note }}
+        </p>
+      </li>
+    </ul>
 
     <div v-else class="mb-6 flex items-center gap-3" aria-hidden="true">
       <span class="h-1.5 w-10 rounded-full" :class="project.accent" />
@@ -86,6 +100,34 @@ defineProps({
     <p class="mt-4 max-w-2xl text-base leading-relaxed" :class="tone === 'beach' ? 'text-ink/85' : 'text-bone/85'">
       {{ project.summary }}
     </p>
+
+    <div v-if="hasVideoSlot" class="mt-6 overflow-hidden rounded-2xl bg-void">
+      <iframe
+        v-if="project.videoId"
+        class="aspect-video w-full"
+        :src="embedSrc(project.videoId)"
+        :title="`${project.title} — vidéo`"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      />
+      <div
+        v-else
+        class="relative flex aspect-video flex-col items-center justify-center gap-3 border border-dashed border-amber/40"
+        role="img"
+        aria-label="Lecteur YouTube en attente, format long"
+      >
+        <span class="grid h-16 w-16 place-items-center rounded-full border border-amber/50 text-amber" aria-hidden="true">
+          <span class="ml-1 block h-0 w-0 border-y-[9px] border-l-[15px] border-y-transparent border-l-amber" />
+        </span>
+        <p class="font-hud text-sm font-semibold uppercase tracking-[0.28em] text-amber">
+          YouTube · format long
+        </p>
+        <p class="max-w-xs text-center text-sm text-bone/70">
+          La vidéo de la remise viendra ici.
+        </p>
+      </div>
+    </div>
 
     <ul class="mt-6 flex flex-wrap gap-2">
       <li

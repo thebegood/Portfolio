@@ -98,13 +98,17 @@ onBeforeRender((state) => {
       const dz = z - pivotZ
       return [pivotX + dx * cos - dz * sin, pivotZ + dx * sin + dz * cos]
     }
-    const baseX = 0.15 + Math.sin(elapsed * 0.15) * 0.5
-    const baseY = 1.55 - scroll * 0.8 + t * 0.2
-    const baseZ = 6.8 - t * 1.05
+    // Balancement idle : un tour en ~22 s, assez ample pour se lire
+    // derrière le titre. Le point visé bouge peu, le personnage reste cadré.
+    const sway = Math.sin(elapsed * 0.28)
+    const bob = Math.sin(elapsed * 0.2)
+    const baseX = 0.15 + sway * 1.35
+    const baseY = 1.55 - scroll * 0.8 + t * 0.2 + bob * 0.28
+    const baseZ = 6.8 - t * 1.05 + Math.cos(elapsed * 0.28) * 0.85
     const [x, z] = spin(baseX, baseZ)
-    const [lookX, lookZ] = spin(0.25, 0)
+    const [lookX, lookZ] = spin(0.25 + sway * 0.18, bob * 0.12)
     cam.position.set(x, baseY, z)
-    cam.lookAt(lookX, 0.35, lookZ)
+    cam.lookAt(lookX, 0.35 + bob * 0.08, lookZ)
     // Le mesh "body" est sur le calque 1. Sans ça, la caméra ne le dessine pas.
     cam.layers.enable(1)
   }

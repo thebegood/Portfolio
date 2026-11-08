@@ -62,7 +62,7 @@ onMounted(async () => {
         data-hero-fade
         class="mx-auto mt-8 max-w-xl text-base leading-relaxed text-ink/80 md:text-lg"
       >
-        Game Designer & Gameplay Programmer.
+        Game Designer & Programmer.
       </p>
 
       <p
