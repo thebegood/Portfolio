@@ -25,6 +25,8 @@ let pointerId = null
 let startX = 0
 let startOffset = 0
 let dragMoved = false
+let pressedId = null
+let suppressClick = false
 
 function measureCard(viewportWidth) {
   if (viewportWidth < 720) return Math.round(Math.min(300, Math.max(210, viewportWidth * 0.72)))
@@ -68,17 +70,32 @@ function go(direction) {
 }
 
 function play(id) {
+  // Un vrai glisser (voir onPointerUp) annule le clic. Un léger tremblement, non.
   if (dragMoved) return
   playingId.value = playingId.value === id ? null : id
 }
 
 function embedSrc(id) {
-  const params = 'autoplay=1&rel=0&modestbranding=1&playsinline=1'
+  // origin + referrer : sans ça YouTube répond erreur 153 et le lecteur meurt
+  // après avoir pourtant démarré.
+  const origin = encodeURIComponent(window.location.origin)
+  const params = `autoplay=1&rel=0&modestbranding=1&playsinline=1&origin=${origin}`
   return `https://www.youtube-nocookie.com/embed/${id}?${params}`
+}
+
+function onPlayClick(id) {
+  // Souris : setPointerCapture avale le click. On a déjà lancé la lecture
+  // dans pointerup, ce clic-ci est un doublon (le tactile, lui, l'envoie).
+  if (suppressClick) {
+    suppressClick = false
+    return
+  }
+  play(id)
 }
 
 function onPointerDown(event) {
   if (event.target.closest('iframe')) return
+  pressedId = event.target.closest('[data-short-id]')?.dataset.shortId ?? null
   pointerId = event.pointerId
   startX = event.clientX
   startOffset = offset.value
@@ -90,19 +107,26 @@ function onPointerDown(event) {
 function onPointerMove(event) {
   if (pointerId !== event.pointerId) return
   const dx = event.clientX - startX
-  if (Math.abs(dx) > 6) dragMoved = true
   offset.value = startOffset + dx
 }
 
 function onPointerUp(event) {
   if (pointerId !== event.pointerId) return
   const dx = event.clientX - startX
+  const id = pressedId
   pointerId = null
-  if (Math.abs(dx) > 56) go(dx < 0 ? 1 : -1)
-  else place(index.value, false)
-  requestAnimationFrame(() => {
-    dragMoved = false
-  })
+  pressedId = null
+  if (Math.abs(dx) > 56) {
+    dragMoved = true
+    go(dx < 0 ? 1 : -1)
+    return
+  }
+  dragMoved = false
+  place(index.value, false)
+  if (!id) return
+  // Le click souris ne part pas après un setPointerCapture. On lance ici.
+  suppressClick = true
+  play(id)
 }
 
 function onKeydown(event) {
@@ -181,6 +205,7 @@ onUnmounted(() => {
                 class="absolute inset-0 h-full w-full"
                 :src="embedSrc(video.id)"
                 :title="`${video.kicker} — ${video.title}`"
+                referrerpolicy="strict-origin-when-cross-origin"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen
               />
@@ -188,8 +213,9 @@ onUnmounted(() => {
                 v-else
                 type="button"
                 class="group absolute inset-0"
+                :data-short-id="video.id"
                 :aria-label="`Lire ${video.title}`"
-                @click="play(video.id)"
+                @click="onPlayClick(video.id)"
               >
                 <img
                   :src="`https://i.ytimg.com/vi/${video.id}/hq2.jpg`"

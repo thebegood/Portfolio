@@ -61,7 +61,7 @@ onUnmounted(() => {
           </h2>
         </div>
         <p class="max-w-sm font-hud text-base leading-snug tracking-wide text-bone/70 md:text-right">
-          Manches, hordes, lumières qui tombent.
+          Manches, hordes, barricades, différentes armes et animations faites maison.
         </p>
       </div>
 
