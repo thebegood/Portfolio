@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+/*
+  Palette acte 1 — lobby FEEZ (capture du jeu) :
+  ciel cyan, sable doré, mer bleue, lettres F violet / E rouge / E rose / Z bleu,
+  panneau de menu brun olive.
+
+  Palette acte 2 — bunker zombies :
+  vide, béton, brouillard vert, ambre de lampe, vert « interface », sang séché.
+
+  Ces tokens alimentent Tailwind (bg-sand, text-perk, font-hud…).
+  La scène Three ne lit pas le CSS : les mêmes hex sont recopiés dans
+  src/data/palette.js. Change les deux en même temps.
+*/
+@theme {
+  --font-display: "Syne", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-hud: "Rajdhani", ui-sans-serif, system-ui, sans-serif;
+
+  --color-sky: #3ed4ec;
+  --color-sky-deep: #128eae;
+  --color-sand: #f0c14b;
+  --color-sand-deep: #e0a63a;
+  --color-foam: #fff8e8;
+  --color-sea: #1d6ccc;
+  --color-sea-mid: #2b7fe0;
+  --color-sea-foam: #49a4f2;
+  --color-feez-purple: #7c4dff;
+  --color-feez-red: #f03a32;
+  --color-feez-pink: #ff3d86;
+  --color-feez-blue: #3a74f2;
+  --color-feez-cyan: #2eb6e8;
+  --color-ink: #241f14;
+  --color-panel: #3a3624;
+
+  --color-void: #080907;
+  --color-concrete: #141612;
+  --color-fog: #1a2218;
+  --color-amber: #e3a33a;
+  --color-perk: #c6f25a;
+  --color-blood: #a11f24;
+  --color-bone: #e6e1d4;
+  --color-rust: #8d4b2a;
+}
+
+html {
+  background: #3ed4ec;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #ff3d86;
+  color: #fff8e8;
+}
+
+/* Grain léger de l'acte bunker. Purement CSS, aucun asset. */
+.bunker-grain {
+  background-image: radial-gradient(rgba(230, 225, 212, 0.045) 0.6px, transparent 0.6px);
+  background-size: 3px 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
