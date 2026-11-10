@@ -43,7 +43,7 @@ onMounted(async () => {
         <span class="block overflow-hidden py-1" aria-hidden="true">
           <span
             data-hero-line
-            class="block text-[clamp(2.35rem,6.6vw,6.4rem)] leading-[0.9] whitespace-nowrap"
+            class="block text-[clamp(1.25rem,7.6vw,6.4rem)] leading-[0.9] whitespace-nowrap"
           >
             Noa Pelletier
           </span>
@@ -51,7 +51,7 @@ onMounted(async () => {
         <span class="block overflow-hidden py-1" aria-hidden="true">
           <span
             data-hero-line
-            class="block text-[clamp(1.35rem,3.3vw,2.6rem)] leading-[0.95] font-bold tracking-[-0.03em] text-ink/80"
+            class="block text-[clamp(0.9rem,4.5vw,2.6rem)] leading-[0.95] font-bold tracking-[-0.03em] text-ink/80"
           >
             Gameplay Programmer
           </span>

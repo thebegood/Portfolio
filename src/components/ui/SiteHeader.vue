@@ -6,6 +6,7 @@ const links = [
   { href: '#haut', label: 'Accueil' },
   { href: '#projets', label: 'Chudballs' },
   { href: '#bunker', label: 'ZombieFps' },
+  { href: '#poste', label: 'Expérience' },
 ]
 
 function onNavClick(event) {
@@ -39,7 +40,7 @@ function onNavClick(event) {
         {{ sceneMood.progress > 0.45 ? '02 — ZombieFps' : '01 — ChudBalls' }}
       </p>
 
-      <nav class="flex items-center gap-4 text-sm md:gap-7">
+      <nav class="flex items-center gap-3 text-[13px] sm:gap-4 sm:text-sm md:gap-6">
         <a
           v-for="link in links"
           :key="link.href"
