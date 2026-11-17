@@ -4,6 +4,18 @@
  */
 export const beachShorts = [
   {
+    id: '68fncX6PxRQ',
+    kicker: 'ChudBalls',
+    title: 'Impact frames',
+    note: 'Ajout des images d’impact',
+  },
+  {
+    id: 'pLGUi2i4nXk',
+    kicker: 'ChudBalls',
+    title: 'Backflips',
+    note: 'Ajout des saltos',
+  },
+  {
     id: 'ZgSCKb4jsc4',
     kicker: 'ChudBalls',
     title: 'Gameplay Multijoueur',
