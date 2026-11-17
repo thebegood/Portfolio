@@ -13,11 +13,16 @@ import UnityMark from './UnityMark.vue'
 
 const videos = beachShorts
 const viewport = ref(null)
-const index = ref(0)
+// Impact frames n'est pas le premier de la liste : l'ouvrir au centre
+// laisse une vignette de chaque côté, au lieu d'une grande carte à gauche.
+const index = ref(Math.max(0, videos.findIndex((video) => video.id === '68fncX6PxRQ')))
 const playingId = ref(null)
 const offset = ref(0)
 const cardWidth = ref(300)
 const gap = 28
+// Le premier rendu a offset 0 : la rangée est collée à gauche.
+// On ne la montre qu'une fois la vidéo du centre calée.
+const placed = ref(false)
 
 let tween
 let resizeObserver
@@ -61,6 +66,7 @@ function measure() {
   const viewportWidth = viewport.value?.clientWidth || 360
   cardWidth.value = measureCard(viewportWidth)
   place(index.value, true)
+  placed.value = true
 }
 
 function go(direction) {
@@ -180,7 +186,8 @@ onUnmounted(() => {
       @keydown="onKeydown"
     >
       <div
-        class="flex items-center"
+        class="flex items-center transition-opacity duration-500 ease-out"
+        :class="placed ? 'opacity-100' : 'opacity-0'"
         :style="{
           gap: `${gap}px`,
           transform: `translate3d(${offset}px, 0, 0)`,
@@ -189,8 +196,8 @@ onUnmounted(() => {
         <article
           v-for="(video, i) in videos"
           :key="video.id"
-          class="shrink-0 origin-center transition-[transform,opacity] duration-500"
-          :class="i === index ? 'scale-100 opacity-100' : 'scale-[0.9] opacity-70'"
+          class="shrink-0 origin-center transition-[scale,opacity] duration-700 ease-out"
+          :class="i === index ? 'scale-100 opacity-100' : 'scale-[0.84] opacity-80'"
           :style="{ width: `${cardWidth}px` }"
           :aria-hidden="i !== index"
         >
